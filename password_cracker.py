@@ -1,11 +1,19 @@
 
 import random
 
+# ROBOT FRAMEWORK
+try:
+    from robot.libraries.BuiltIn import BuiltIn
+    from robot.libraries.BuiltIn import _Misc
+    import robot.api.logger as logger
+    from robot.api.deco import keyword
+    ROBOT = False
+except Exception:
+    ROBOT = False
+
 class Password_Cracker:
-    def __init__(self, password='pass'):
+    def __init__(self, password='abc'):
         self.password = password
-        #password = input("Enter password: ")
-        #password = 'abc'
         self.character_list = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'
 
     def result(self, cracked_password, guess_total, guesses):
@@ -16,6 +24,10 @@ class Password_Cracker:
             return result.format(cracked_password, guess_total, guesses)
         else:
             return result2.format(cracked_password, guess_total, guesses)
+        
+    def set_password(self):
+        self.password = input("Enter password: ")
+        return self.password
 
     # Goes through each character in the password matching the self.character_list if matching appends to cracked_password
     def password_cracker_one(self):
@@ -86,8 +98,9 @@ class Password_Cracker:
                 continue
         
         return self.result(cracked_password, guess_total, max_guesses)
+    
 
-password_cracker = Password_Cracker('test')
-print(password_cracker.password_cracker_one())
-print(password_cracker.password_cracker_two())
-print(password_cracker.password_cracker_three())
+# password_cracker = Password_Cracker('a')
+# print(password_cracker.password_cracker_one())
+# print(password_cracker.password_cracker_two())
+# print(password_cracker.password_cracker_three())
