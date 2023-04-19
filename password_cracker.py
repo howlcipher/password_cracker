@@ -99,8 +99,50 @@ class Password_Cracker:
         
         return self.result(cracked_password, guess_total, max_guesses)
     
+    # randomly selects an amount of characters from 1 to max_length and randomly appends a character up to the random total number
+    def password_cracker_four(self):        
+        cracked_password = ""
+        guess_total = 0
+        max_guesses = 1000000
+        max_length = 20
+        guess_lengths = []
+        guess_avg_length = 0.0
+        total_lengths = 0
+        random_number = 0
 
-# password_cracker = Password_Cracker('a')
+        while cracked_password!= self.password:
+            random_length = random.randint(1, max_length)
+            guess_lengths.append(random_length)
+            for i in range(random_length):
+                random_number = random.randint(0, len(self.character_list)-1)
+                cracked_password += self.character_list[random_number]
+            if cracked_password == self.password:
+                guess_total += 1
+                break
+            elif guess_total == max_guesses:
+                cracked_password = 'EXCEEDED MAX GUESSES'
+                break 
+            else:
+                guess_total += 1
+                cracked_password = ""
+                continue
+
+        for guess in guess_lengths:
+            total_lengths += guess
+        
+        guess_avg_length = total_lengths / guess_total
+        guess_stats = "Total Lengths: {} Total Guesses: {} Avg Length: {}".format(total_lengths, guess_total, guess_avg_length)
+        print(guess_stats)
+
+        return self.result(cracked_password, guess_total, max_guesses)
+    
+
+# Testing purposes
+# password_cracker = Password_Cracker('abc')
+
 # print(password_cracker.password_cracker_one())
 # print(password_cracker.password_cracker_two())
 # print(password_cracker.password_cracker_three())
+# print(password_cracker.password_cracker_four())
+
+

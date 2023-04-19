@@ -18,6 +18,9 @@ ${password2}     password
 1 -- method: password_cracker_three from python
     ${result}      PC1.Password Cracker Three
     Log            ${result}
+1 -- method: password_cracker_frour from python
+    ${result}      PC1.Password Cracker Four
+    Log            ${result}
 
 *** Test Cases ***
 2 -- method: password_cracker_one from python
@@ -28,5 +31,8 @@ ${password2}     password
     Log            ${result}
 2 -- method: password_cracker_three from python
     ${result}      PC2.Password Cracker Three
+    Log            ${result}
+2 -- method: password_cracker_frour from python
+    ${result}      PC2.Password Cracker Four
     Log            ${result}
 
